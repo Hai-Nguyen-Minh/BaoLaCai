@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Categories;
 $cate = Categories::all();
@@ -15,7 +16,6 @@ $cate = Categories::all();
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', 'ArticleController@index');
 Route::get('/login', 'UserController@loginForm');
 Route::post('/login', 'UserController@login');
@@ -26,3 +26,4 @@ Route::resource('/post', 'ArticleController');
 Route::get('/category/{id_category}', 'ArticleController@searchCategory');
 Route::get('/article/{id_news}', 'ArticleController@showNews');
 Route::post('/search', 'ArticleController@search');
+Route::get('/cate', 'CategoryController@getCategory');

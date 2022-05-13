@@ -1,0 +1,11 @@
+.content img{
+    width: 100%;
+    height: auto;
+}
+.content{
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.content hr{
+    margin-top: 5px;
+}

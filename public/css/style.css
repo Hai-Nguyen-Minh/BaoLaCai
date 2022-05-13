@@ -1,0 +1,27 @@
+.footer{
+    padding: 15px;
+    margin-top: 45px;
+    background-color: aqua;
+}
+.subcribe button{
+    margin-top: 5px;
+}
+.log{
+    margin: 15% 35%;
+}
+.navbar{
+    background-color: darkslateblue ;
+}
+.navbar-light .navbar-brand{
+    color: white !important;
+}
+.navbar-light .nav-link{
+    color: white !important
+}
+.btn-outline-primary {
+    color: white !important;
+}
+/* img{
+    width: 100%;
+    height: auto;
+} */

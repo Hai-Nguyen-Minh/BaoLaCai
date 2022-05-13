@@ -16,7 +16,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $post = Articles::all();
+        $post = Articles::paginate(12);
         return view('home')->with('post', $post); 
     }
 
@@ -28,7 +28,7 @@ class ArticleController extends Controller
     public function create()
     {
         $cate = Categories::all();
-        return view('post')->with('cate', $cate);
+        return view('post',['cate'=> $cate]);
     }
 
     /**
@@ -85,7 +85,7 @@ class ArticleController extends Controller
     {
         $articles = Articles::where('id_category', $id);
         $count = $articles->count();
-        $article = $articles->get();
+        $article = $articles->paginate(12);
         return view('category',['article'=> $article, 'count'=>$count]);        
     }
 
@@ -97,7 +97,8 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
-
+        $article = Articles::where('id_news', $id)->get();
+        return view('edit')->with('article', $article);
     }
 
     /**
@@ -109,7 +110,8 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+
     }
 
     /**
@@ -131,7 +133,7 @@ class ArticleController extends Controller
     {
         $articleSearch = $request->input('search');
         $articles = Articles::where('title', 'LIKE', '%'.$articleSearch.'%');
-        $article = $articles->get();
+        $article = $articles->paginate(12);
         $count = $articles->count();
         return view('search', ['article'=>$article, 'count'=>$count]);
     }

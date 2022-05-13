@@ -1,6 +1,6 @@
 @extends('layout.parent')
 @section('content')
-    <div class="position-absolute top-50 start-50 translate-middle">
+    <div class="log">
     <figure class="text-center">
                     <blockquote class="blockquote">
                         <h2>Register</h2>
@@ -19,6 +19,12 @@
                 <label for="inputEmail3" class="col-md-4 col-form-label">Username</label>
                 <div class="col-sm-12">
                 <input type="text" class="form-control" id="inputEmail3" name="username">
+                </div>
+            </div>
+            <div class="row mb-4">
+                <label for="inputEmail3" class="col-md-4 col-form-label">Email</label>
+                <div class="col-sm-12">
+                <input type="email" class="form-control" id="inputEmail3" name="email">
                 </div>
             </div>
             <div class="row mb-4">

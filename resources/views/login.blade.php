@@ -1,6 +1,6 @@
 @extends('layout.parent')
 @section('content')
-    <div class="position-absolute top-50 start-50 translate-middle">
+    <div class="log">
                 <figure class="text-center">
                     <blockquote class="blockquote">
                         <h2>Log In</h2>
