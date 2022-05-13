@@ -52,7 +52,7 @@ class ArticleController extends Controller
             empty($smallcontent) ||
             empty($fullcontent))
         {
-            return view('post')->with('error', 'Yeu cau nhap day du thong tin!!!');
+            return redirect('/post/create')->with('error', 'Yeu cau nhap day du thong tin!!!');
         }
         else
         {
@@ -70,7 +70,7 @@ class ArticleController extends Controller
                 return redirect('/');
             }
             else
-                return view('post')->with('exist', 'Bai viet khong hop le');
+                return redirect('/post/create')->with('exist', 'Bai viet khong hop le');
         }
 
     }
@@ -122,7 +122,9 @@ class ArticleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $article = Articles::where('id_news', $id);
+        $article->delete();
+        return response()->json(['success'=> 'Da xoa thanh cong']);
     }
     public function showNews($id)
     {
