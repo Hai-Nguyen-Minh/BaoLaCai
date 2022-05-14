@@ -8,6 +8,6 @@ class Categories extends Model
 {
     public function article()
     {
-        return $this->belongsTo('App\Models\Articles');
+        return $this->hasMany('App\Models\Articles');
     }
 }

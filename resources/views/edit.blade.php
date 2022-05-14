@@ -23,20 +23,18 @@
         <input type="text" class="form-control" name="img_pth" value="{{$a->img_path}}">
         </div>
         <div class="mb-3">
-                <select class="form-control form-select" id="category">
-                    <option selected value="{{$a->id_category}}"><?php echo $cateSelect?></option>
-                        @foreach ($cate as $c)
-                        <option value="{{$c->id_category}}">{{$c->category}}</option>
-                        @endforeach
+                <select class="form-control form-select">
+                    <option selected value="{{$a->id_category}}">{{$a->categore}}</option>
+           
                 </select>
         </div>
         <div class="mb-3">
         <label for="exampleFormControlTextarea1" class="form-label">Subject</label>
-        <textarea class="form-control" name="subject" rows="3" value="{{$a->smallcontent}}"></textarea>
+        <textarea class="form-control" name="subject" rows="3">{{$a->smallcontent}}</textarea>
         </div>
         <div class="mb-3">
         <label for="exampleFormControlTextarea1" class="form-label">Content</label>
-        <textarea class="form-control" name="content" rows="15" value="{{$a->fullcontent}}"></textarea>
+        <textarea class="form-control" name="content" rows="15">{{$a->fullcontent}}</textarea>
         </div>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                 <button class="btn btn-outline-primary" type="submit">Submit</button>
@@ -44,11 +42,24 @@
 </div>
 </form>
 
-<?php 
-        use App\Models\Categories;
-        $cate = Categories::all();
-        $cateSelect = Categories::find($a->id_category)->get('category');
-?>
 @endforeach
-@endsection
 
+<script>
+        $(document).ready(function(){
+                $.ajax({
+                        url: '/cate',
+                        type: 'get',
+                        success:function(response)
+                        {
+                                console.log(response);
+                                $.each(response.cate, function(data, value){
+                                        $('.form-select').append($("<option></option>").val(value.id_category).html(value.category));
+                                })
+                        }      
+                })
+        })
+
+</script>
+
+
+@endsection

@@ -97,8 +97,9 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
-        $article = Articles::where('id_news', $id)->get();
-        return view('edit')->with('article', $article);
+        $article = Articles::where('id_news', $id);
+        $art = $article->get();
+        return view('edit')->with(['article'=> $art]);
     }
 
     /**

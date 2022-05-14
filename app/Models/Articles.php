@@ -15,6 +15,6 @@ class Articles extends Model
     }
     public function category()
     {
-        return $this->hasOne('App\Models\Categories');
+        return $this->belongsTo('App\Models\Categories');
     }
 }

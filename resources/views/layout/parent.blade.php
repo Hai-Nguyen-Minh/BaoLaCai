@@ -1,32 +1,25 @@
-<?php 
-    use App\Models\Categories;
-    $cate = Categories::all();
-?>
+
 <!DOCTYPE html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <link rel="icon" href="{{asset('/image/favicon_io/favicon-16x16.png')}}">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <link rel="stylesheet" href="{{asset('/css/style.css')}}">
         <script>
-            // $(document).ready(function (){
-            //     $(".select").click(function (){
-            //         $.ajax({
-            //             url: "",
-            //             type: 'get',
-            //             success:function(result){
-            //                 var i=0;
-            //                 var body ;
-            //                 console.log(result)
-            //                 for (i; i<result.length; i++)
-            //                 {
-            //                     body += '<li><a class="dropdown-item" href='+result[i].id_category+' id="cate">'+result[i].category+'</a></li>';
-            //                 }
-            //                 $('.menu').append(body);
-            //             }
-            //         })
-            //     })
-            // })    
+            $(document).ready(function (){
+                    $.ajax({
+                        url: "/cate",
+                        type: 'get',
+                        success:function(result){
+                            console.log(result)
+                            $.each(result.cate, function(data, value){
+                                var link = value.id_category;
+                                $('.menu').append($("<li></li>").append($('<a></a>').attr('href', link).addClass('dropdown-item').html(value.category)));
+                            })
+                        }
+                    })
+                })    
         </script>
     </head>
     <body>
@@ -59,10 +52,7 @@
                             </a>
                             
                             <ul class="dropdown-menu menu" aria-labelledby="navbarDropdown">
-                            @foreach($cate as $c)
-                                <li><a class="dropdown-item" href='{{url("category/$c->id_category")}}' id="cate">{{$c->category}}</a></li>
 
-                            @endforeach
                             </ul>
                             </li>
                             @if (Session::has('login')&&Session::get('login')==true)
