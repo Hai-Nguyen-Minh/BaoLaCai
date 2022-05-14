@@ -3,9 +3,11 @@
     height: auto;
 }
 .content{
+    margin-top: 15px !important;
     padding-left: 50px;
     padding-right: 50px;
+    background-color: white;
 }
-.content hr{
-    margin-top: 5px;
+.page{
+    margin-top: 25px;
 }

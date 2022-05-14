@@ -21,7 +21,6 @@
 .btn-outline-primary {
     color: white !important;
 }
-/* img{
-    width: 100%;
-    height: auto;
-} */
+.site{
+    padding: 25px;
+}

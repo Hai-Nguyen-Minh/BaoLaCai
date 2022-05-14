@@ -36,7 +36,7 @@
         </div>
             <nav class="navbar navbar-expand-lg navbar-light sticky-top">
                 <div class="container-fluid">
-                    <h1><a class="navbar-brand" href="{{url('/')}}">baolacai.xyz</a></h1>
+                    <a class="navbar-brand" href="{{url('/')}}"><img src="{{asset('/image/logo.png')}}" height="40px" width="200px"></a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
@@ -91,7 +91,7 @@
                     </div>
                 </div>
             </nav>
-            <div class="container-lg">
+            <div class="container site">
                 @section('content')
                 @show
             </div>
