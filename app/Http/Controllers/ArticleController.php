@@ -16,7 +16,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $post = Articles::paginate(12);
+        $post = Articles::orderBy('created_at', 'desc')->paginate(12);
         return view('home')->with('post', $post); 
     }
 
@@ -85,7 +85,7 @@ class ArticleController extends Controller
     {
         $articles = Articles::where('id_category', $id);
         $count = $articles->count();
-        $article = $articles->paginate(12);
+        $article = $articles->orderBy('created_at', 'desc')->paginate(12);
         return view('category',['article'=> $article, 'count'=>$count]);        
     }
 
@@ -111,8 +111,36 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
-
+        $user = $request->session()->get('username');
+        $id_user = Users::where('username', $user)->get('id_user');
+        $title = $request->input('title');
+        $ima_path = $request->input('img_pth');
+        $id_category = $request->input('category');
+        $smallcontent = $request->input('subject');
+        $fullcontent = $request->input('content');
+        if( empty($title) ||
+            empty($ima_path) ||
+            $id_category == 'Category'||
+            empty($smallcontent) ||
+            empty($fullcontent))
+    {
+        return redirect('/post/'.$id.'/edit')->with('error', 'Yeu cau nhap day du thong tin!!!');
+    }
+        $titles = Articles::where('title', $title)->count();
+        if($titles == 0)
+        {
+            $article=Articles::where('id_news', $id);
+            $article->id_user = substr($id_user,12,1);
+            $article->title = $title;
+            $article->img_path = $ima_path;
+            $article->id_category = $id_category;
+            $article->smallcontent = $smallcontent;
+            $article->fullcontent = $fullcontent;
+            $article->save();
+            return redirect('/');
+        }
+        else
+            return redirect('/post/'.$id.'/edit')->with('exist', 'Bai viet khong hop le');
     }
 
     /**
@@ -127,7 +155,7 @@ class ArticleController extends Controller
         $article->delete();
         return response()->json(['success'=> 'Da xoa thanh cong']);
     }
-    public function showNews($id)
+    public function show($id)
     {
         $news = Articles::where('id_news', $id)->get();
         return view('article',['news'=> $news]);
@@ -136,7 +164,7 @@ class ArticleController extends Controller
     {
         $articleSearch = $request->input('search');
         $articles = Articles::where('title', 'LIKE', '%'.$articleSearch.'%');
-        $article = $articles->paginate(12);
+        $article = $articles->orderBy('created_at', 'desc')->paginate(12);
         $count = $articles->count();
         return view('search', ['article'=>$article, 'count'=>$count]);
     }

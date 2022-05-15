@@ -1,7 +1,8 @@
 @extends('layout.parent')
 @section('content')
-<form method="PUT" action="{{url('/post')}}">
+
 @foreach($article as $a)
+<form method="get" action="{{url('/post/'.$a->id_news)}}">
 @csrf
         <figure>
                 <figcaption>
@@ -23,8 +24,8 @@
         <input type="text" class="form-control" name="img_pth" value="{{$a->img_path}}">
         </div>
         <div class="mb-3">
-                <select class="form-control form-select">
-                    <option selected value="{{$a->id_category}}">{{$a->categore}}</option>
+                <select class="form-control form-select" name="category">
+                    <option selected value="{{$a->id_category}}">{{$a->category}}</option>
            
                 </select>
         </div>

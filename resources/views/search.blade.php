@@ -7,7 +7,7 @@
             <img src="{{asset('/'.$a->img_path)}}">
         </div>
         <div class="col-sm-5">
-            <h2><a href="{{url('/article/'.$a->id_news)}}">{{$a->title}}</a></h2>
+            <h2><a href="{{url('/post/'.$a->id_news)}}">{{$a->title}}</a></h2>
             <p>{{$a->smallcontent}}</p>
         </div>
     </div>

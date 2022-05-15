@@ -14,7 +14,7 @@
                         success:function(result){
                             console.log(result)
                             $.each(result.cate, function(data, value){
-                                var link = value.id_category;
+                                var link = 'http://localhost:8000/category/'+value.id_category;
                                 $('.menu').append($("<li></li>").append($('<a></a>').attr('href', link).addClass('dropdown-item').html(value.category)));
                             })
                         }

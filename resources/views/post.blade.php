@@ -22,10 +22,8 @@
         <input type="text" class="form-control" name="img_pth">
         </div>
         <div class="mb-3">
-                <select class="form-control form-select" id="category">
-                        @foreach ($cate as $c)
-                        <option value="{{$c->id_category}}">{{$c->category}}</option>
-                        @endforeach
+                <select class="form-control form-select" name="category">
+                        <option selected value="0">Category</option>
                 </select>
         </div>
         <div class="mb-3">
@@ -41,9 +39,21 @@
         </div>
 </div>
 </form>
-@endsection
 
-<?php 
-        use App\Models\Categories;
-        $cate = Categories::all();
-?>
+<script>
+        $(document).ready(function(){
+                $.ajax({
+                        url: '/cate',
+                        type: 'get',
+                        success:function(response)
+                        {
+                                console.log(response);
+                                $.each(response.cate, function(data, value){
+                                        $('.form-select').append($("<option></option>").val(value.id_category).html(value.category));
+                                })
+                        }      
+                })
+        })
+
+</script>
+@endsection
