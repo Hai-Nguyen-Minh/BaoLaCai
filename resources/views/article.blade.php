@@ -27,7 +27,7 @@
     <div class="d-flex justify-content-center"><h1>{{$n->title}}</h1></div>
     <hr>
     <div class="content">
-      <pre>{{$n->fullcontent}}</pre>
+      <p>{{$n->fullcontent}}</p>
     </div>
 </div>
 @endforeach
