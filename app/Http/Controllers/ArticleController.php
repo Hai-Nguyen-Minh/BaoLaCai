@@ -116,21 +116,15 @@ class ArticleController extends Controller
         $id_category = $request->input('category');
         $smallcontent = $request->input('subject');
         $fullcontent = $request->input('content');
-        $titles = Articles::where('title', $title)->count();
-        if($titles == 0)
-        {
-            $article=Articles::where('id_news', $id);
-            $article->id_user = substr($id_user,12,1);
-            $article->title = $title;
-            $article->img_path = $ima_path;
-            $article->id_category = $id_category;
-            $article->smallcontent = $smallcontent;
-            $article->fullcontent = $fullcontent;
-            $article->save();
-            return redirect('/');
-        }
-        else
-            return redirect('/post/'.$id.'/edit')->with('exist', 'Bai viet khong hop le');
+        $article=Articles::find('id_news', $id);
+        $article->id_user = substr($id_user,12,1);
+        $article->title = $title;
+        $article->img_path = $ima_path;
+        $article->id_category = $id_category;
+        $article->smallcontent = $smallcontent;
+        $article->fullcontent = $fullcontent;
+        $article->save();
+        return redirect('/');
     }
 
     /**
