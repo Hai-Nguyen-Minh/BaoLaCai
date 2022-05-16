@@ -34,6 +34,7 @@ class UserController extends Controller
                 if($pass == 1)
                 {
                     $request->session()->put('login', true);
+                    $request->session()->put('id_user');
                     $request->session()->put('username', $username);
                     return redirect('/');
                 }
@@ -96,6 +97,7 @@ class UserController extends Controller
                     $user->password = $password;
                     $user->save();
                     $request->session()->put('login', true);
+                    $request->session()->put('id_user');
                     $request->session()->put('username', $username);
                     return redirect('/');  
                 }

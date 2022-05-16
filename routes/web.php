@@ -24,7 +24,5 @@ Route::post('/register', 'UserController@store');
 Route::get('/logout', 'UserController@logout');
 Route::resource('/post', 'ArticleController');
 Route::get('/category/{id_category}', 'ArticleController@searchCategory');
-Route::get('/article/{id_news}', 'ArticleController@showNews');
 Route::post('/search', 'ArticleController@search');
 Route::get('/cate', 'CategoryController@getCategory');
-Route::put('/post/.{id_news}', 'ArticleController@update');

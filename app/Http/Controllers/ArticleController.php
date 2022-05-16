@@ -39,8 +39,7 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        $user = $request->session()->get('username');
-        $id_user = Users::where('username', $user)->get('id_user');
+        $id_user = $request->session()->get('id_user');
         $title = $request->input('title');
         $ima_path = $request->input('img_pth');
         $id_category = $request->input('category');
@@ -111,21 +110,12 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = $request->session()->get('username');
-        $id_user = Users::where('username', $user)->get('id_user');
+        $id_user = $request->session()->get('id_user');
         $title = $request->input('title');
         $ima_path = $request->input('img_pth');
         $id_category = $request->input('category');
         $smallcontent = $request->input('subject');
         $fullcontent = $request->input('content');
-        if( empty($title) ||
-            empty($ima_path) ||
-            $id_category == 'Category'||
-            empty($smallcontent) ||
-            empty($fullcontent))
-    {
-        return redirect('/post/'.$id.'/edit')->with('error', 'Yeu cau nhap day du thong tin!!!');
-    }
         $titles = Articles::where('title', $title)->count();
         if($titles == 0)
         {

@@ -2,7 +2,7 @@
 @section('content')
 
 @foreach($article as $a)
-<form method="get" action="{{url('/post/'.$a->id_news)}}">
+<form method="put" action="{{url('/post')}}">
 @csrf
         <figure>
                 <figcaption>
