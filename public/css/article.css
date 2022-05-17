@@ -1,8 +1,13 @@
 
 .article{
-    margin-left: 50px;
-    margin-right: 50px;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 .content p{
+    margin-top: 20px;
     text-rendering: optimizeSpeed;
+}
+.content img{
+    width: 100%;
+    height: auto;
 }

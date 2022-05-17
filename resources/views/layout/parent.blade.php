@@ -36,19 +36,19 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{url('/')}}">Home</a>
+                            <a class="nav-link active" aria-current="page" href="{{url('/')}}">Trang chủ</a>
                             </li>
                             @if (Session::has('login')&&Session::get('login')==true)
                             <li class="nav-item">
-                            <a class="nav-link"  href="{{url('/post/create')}}">Post</a>
+                            <a class="nav-link"  href="{{url('/post/create')}}">Đăng bài</a>
                             @else
                             <li class="nav-item">
-                            <a class="nav-link disabled">Post</a>
+                            <a class="nav-link disabled">Đăng bài</a>
                             @endif
                             </li>
                             <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle select" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Categories
+                                Thể loại
                             </a>
                             
                             <ul class="dropdown-menu menu" aria-labelledby="navbarDropdown">
@@ -61,22 +61,22 @@
                                 {{Session::get('username')}}
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="{{url('/logout')}}">Log Out</a></li>
+                                <li><a class="dropdown-item" href="{{url('/logout')}}">Đăng xuất</a></li>
                             </ul>
                             </li>
                             @else
                             <li class="nav-item">
-                            <a class="nav-link" href="{{url('login')}}">Log In</a>
+                            <a class="nav-link" href="{{url('login')}}">Đăng nhập</a>
                             </li>
                             <li class="nav-item">
-                            <a class="nav-link" href="{{url('register')}}">Register</a>
+                            <a class="nav-link" href="{{url('register')}}">Đăng ký</a>
                             </li>
                             @endif
                         </ul>
-                        <form class="d-flex" method="POST" action="{{url('/search')}}">
+                        <form class="d-flex search" method="POST" action="{{url('/search')}}">
                             @csrf
                             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
-                            <button class="btn btn-outline-primary" type="submit">Search</button>
+                            <button class="btn btn-outline-primary" type="submit">Tìm</button>
                         </form>
                     </div>
                 </div>
