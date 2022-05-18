@@ -38,7 +38,7 @@
         <textarea class="form-control" name="content" rows="15">{{$a->fullcontent}}</textarea>
         </div>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button class="btn btn-outline-primary" type="submit">Submit</button>
+                <button class="btn btn-outline-primary" id="update" onclick="submitPost('{{$a->id_news}}')">Submit</button>
         </div>
 </div>
 </form>
@@ -56,9 +56,46 @@
                                 $.each(response.cate, function(data, value){
                                         $('.form-select').append($("<option></option>").val(value.id_category).html(value.category));
                                 })
-                        }      
+                        },
+                        error:function(result)
+                        {
+                                console.log(result)
+                        }    
                 })
         })
+
+</script>
+<script>
+                function submitPost(id) {
+                 
+                        $.ajaxSetup({
+                        headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                        });
+                        $.ajax({
+                                url: "/post/"+id,
+                                type: 'put',
+                                dataType: "JSON",
+                                data: {
+                                        "_token": "{{ csrf_token() }}",
+                                        "id_news": id
+                                },
+                                success:function(response)
+                                {
+                                        console.log(response);
+                                        // $.each(response.cate, function(data, value){
+                                        //         $('.form-select').append($("<option></option>").val(value.id_category).html(value.category));
+                                        // })
+                                } ,
+                                error:function()
+                                {
+                                        console.log('Failed')
+                                }   
+                        })
+                };
+
+        
 
 </script>
 

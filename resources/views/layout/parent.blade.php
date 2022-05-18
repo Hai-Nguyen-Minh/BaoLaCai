@@ -1,6 +1,7 @@
 
 <!DOCTYPE html>
     <head>
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <link rel="icon" href="{{asset('/image/favicon_io/favicon-16x16.png')}}">
@@ -73,7 +74,7 @@
                             </li>
                             @endif
                         </ul>
-                        <form class="d-flex search" method="POST" action="{{url('/search')}}">
+                        <form class="d-flex justify-content-center" method="POST" action="{{url('/search')}}">
                             @csrf
                             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
                             <button class="btn btn-outline-primary" type="submit">Tìm</button>

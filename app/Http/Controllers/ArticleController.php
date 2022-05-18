@@ -96,6 +96,7 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
+        $article = new Articles;
         $article = Articles::where('id_news', $id);
         $art = $article->get();
         return view('edit')->with(['article'=> $art]);
@@ -124,7 +125,7 @@ class ArticleController extends Controller
         $article->smallcontent = $smallcontent;
         $article->fullcontent = $fullcontent;
         $article->save();
-        return redirect('/');
+        return response()->json($article);
     }
 
     /**
